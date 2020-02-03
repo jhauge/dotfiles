@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+    "files.insertFinalNewline": true,
+    "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "omnisharp.enableRoslynAnalyzers": true
+}

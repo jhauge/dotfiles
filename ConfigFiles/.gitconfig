@@ -1,0 +1,7 @@
+[fetch]
+	prune = true
+[user]
+	name = Jesper Hauge
+	email = jes@addition.dk
+[credential]
+	helper = manager
