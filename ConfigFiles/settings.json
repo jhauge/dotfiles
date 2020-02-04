@@ -1,9 +1,16 @@
 {
-    "window.zoomLevel": 1,
-    "editor.wordWrap": "on",
+    "breadcrumbs.enabled": true,
+    "editor.cursorBlinking": "smooth",
     "editor.fontFamily": "\"Fira Code Retina\", Hack, Consolas",
     "editor.fontSize": 13,
     "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "window.zoomLevel": 1,
+    "workbench.colorCustomizations": {},
     "workbench.colorTheme": "Winter is Coming (Dark Blue)",
     "todohighlight.exclude": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map}",
     "[json]": {
