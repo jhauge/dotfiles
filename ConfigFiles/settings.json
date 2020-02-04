@@ -1,8 +1,24 @@
 {
-    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
-    "files.insertFinalNewline": true,
-    "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+    "window.zoomLevel": 1,
+    "editor.wordWrap": "on",
+    "editor.fontFamily": "\"Fira Code Retina\", Hack, Consolas",
+    "editor.fontSize": 13,
     "editor.fontLigatures": true,
+    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+    "todohighlight.exclude": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map}",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.insertFinalNewline": false,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-vscode.csharp"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
+    },
     "workbench.iconTheme": "material-icon-theme",
-    "omnisharp.enableRoslynAnalyzers": true
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe"
 }

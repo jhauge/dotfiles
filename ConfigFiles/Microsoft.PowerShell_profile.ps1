@@ -20,7 +20,7 @@ Set-Alias gcom Git-Commit
 
 # Git shortcut to create branch locally and push to shared repo
 function global:Git-Branch {
-    param($branchName,$message)
+    param($branchName, $message)
     git checkout -b "$branchName"
     git add .
     git commit -m "$message"
@@ -30,22 +30,22 @@ Set-Alias gbranch Git-Branch
 
 # Git remove branch locally and in shared repo
 function global:Git-RemoveBranch {
-  param($branchName,$remoteName='origin')
-  git branch -d "$branchName"
-  git push $remoteName --delete "$branchName"
+    param($branchName, $remoteName = 'origin')
+    git branch -d "$branchName"
+    git push $remoteName --delete "$branchName"
 }
 Set-Alias gremove Git-RemoveBranch
 
 # Open Gmaster in path
 function global:Open-GMaster {
-    param($path='.')
+    param($path = '.')
     & gmaster --path="$path"
 }
 Set-Alias gmas Open-GMaster
 
 # Create file in utf-8 with content
 function global:Create-File {
-    param($content='Empty file', $filename='newfile.txt', $currentPath='.')
+    param($content = 'Empty file', $filename = 'newfile.txt', $currentPath = '.')
     $encoding = New-Object System.Text.UTF8Encoding $false
     $path = Convert-Path $currentPath
     $fullname = "$path/$filename"
@@ -57,8 +57,8 @@ Set-Alias wf Create-File
 function global:Show-Colors( ) {
     $colors = [Enum]::GetValues( [ConsoleColor] )
     $max = ($colors | foreach { "$_ ".Length } | Measure-Object -Maximum).Maximum
-    foreach( $color in $colors ) {
-        Write-Host (" {0,2} {1,$max} " -f [int]$color,$color) -NoNewline
+    foreach ( $color in $colors ) {
+        Write-Host (" {0,2} {1,$max} " -f [int]$color, $color) -NoNewline
         Write-Host "$color" -Foreground $color
     }
 }
@@ -67,6 +67,39 @@ function global:Get-Guid() {
     return [guid]::NewGuid()
 }
 Set-Alias guid global:Get-Guid
+
+# Backup Azure DB
+function global:Backup-AzureDB {
+    param($databaseName = '', $serverName = '', $userName = '', $password = '', $backupDirectory = '')
+    # Location of Microsoft.SqlServer.Dac.dll
+    $DacAssembly = "C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Extensions\Application\Microsoft.SqlServer.Dac.dll"
+
+    $connectionString = "server=$serverName;database=$databaseName;user id=$userName;password=$password"
+
+    # Load DAC assembly
+    Write-Host "Loading Dac Assembly: $DacAssembly"
+    Add-Type -Path $DacAssembly
+    Write-Host "Dac Assembly loaded."
+
+    # Initialize Dac
+    $now = $(Get-Date).ToString("HH:mm:ss")
+    $services = new-object Microsoft.SqlServer.Dac.DacServices $connectionString
+    if ($null -eq $services) {
+        exit
+    }
+
+    $dateTime = $(Get-Date).ToString("yyyy-MM-dd-HH.mm.ss")
+
+    Write-Host "Starting backup of $databaseName at $now"
+    $watch = New-Object System.Diagnostics.StopWatch
+    $watch.Start()
+    $services.ExportBacpac("$backupDirectory$databaseName-$dateTime.bacpac", $databaseName)
+    $watch.Stop()
+    Write-Host "Backup completed in" $watch.Elapsed.ToString()
+}
+
+# Get my current external ip
+$Global:myIp = Invoke-RestMethod http://ipinfo.io/json | Select-Object -exp ip
 
 # Z directory browsing
 Import-Module z
@@ -81,32 +114,34 @@ Import-Module posh-git
 Import-Module Az
 
 # posh-git colors
-$GitPromptSettings.DefaultColor.ForegroundColor=[ConsoleColor]::White
-$GitPromptSettings.DefaultColor.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.PathStatusSeparator.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BeforeStatus.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BranchColor.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.IndexColor.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.WorkingColor.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.StashColor.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.DelimStatus.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.AfterStatus.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BeforeIndex.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BeforeStash.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.AfterStash.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.LocalDefaultStatusSymbol.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.LocalWorkingStatusSymbol.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BranchAheadStatusSymbol.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BranchAheadStatusSymbol.ForegroundColor=[ConsoleColor]::DarkGreen
-$GitPromptSettings.BranchBehindStatusSymbol.BackgroundColor=[ConsoleColor]::DarkGray
-$GitPromptSettings.BranchBehindStatusSymbol.ForegroundColor=[ConsoleColor]::DarkRed
-$GitPromptSettings.BranchBehindAndAheadStatusSymbol.BackgroundColor=[ConsoleColor]::DarkGray
+$GitPromptSettings.DefaultColor.ForegroundColor = [ConsoleColor]::White
+$GitPromptSettings.DefaultColor.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.PathStatusSeparator.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BeforeStatus.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BranchColor.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.IndexColor.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.WorkingColor.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.StashColor.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.DelimStatus.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.AfterStatus.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BeforeIndex.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BeforeStash.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.AfterStash.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.LocalDefaultStatusSymbol.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.LocalWorkingStatusSymbol.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BranchAheadStatusSymbol.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BranchAheadStatusSymbol.ForegroundColor = [ConsoleColor]::DarkGreen
+$GitPromptSettings.BranchBehindStatusSymbol.BackgroundColor = [ConsoleColor]::DarkGray
+$GitPromptSettings.BranchBehindStatusSymbol.ForegroundColor = [ConsoleColor]::DarkRed
+$GitPromptSettings.BranchBehindAndAheadStatusSymbol.BackgroundColor = [ConsoleColor]::DarkGray
 
-$GitPromptSettings.BeforeStatus.ForegroundColor=[ConsoleColor]::DarkBlue
-$GitPromptSettings.BeforeStatus.Text=" "
-$GitPromptSettings.AfterStatus.Text=" "
+$GitPromptSettings.BeforeStatus.ForegroundColor = [ConsoleColor]::DarkBlue
+$GitPromptSettings.BeforeStatus.Text = " "
+$GitPromptSettings.AfterStatus.Text = " "
 
 $env:path += ";C:\Program Files\Microsoft SQL Server\130\DAC\bin;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Users\Jesper\AppData\Local\gmaster\bin\;C:\Program Files\Git\usr\bin\;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\;C:\Users\jespe\AppData\Local\gmaster\bin\"
+
+$loadedModules = Get-Module | Select-Object Name
 
 
 Set-Content Function:prompt {
@@ -120,7 +155,7 @@ Set-Content Function:prompt {
 
     # Write ERR for any PowerShell errors
     if ($Error.Count -ne 0) {
-        Write-Host "😫 " -NoNewLine
+        Write-Host "🤢 " -NoNewLine
         $Error.Clear()
     }
     else {
@@ -129,15 +164,25 @@ Set-Content Function:prompt {
 
     # Write the current public cloud Azure CLI subscription
     # NOTE: You will need sed from somewhere (for example, from Git for Windows)
-    if (Test-Path ~/.azure/clouds.config) {
-        $currentSub = & sed -nr "/^\[AzureCloud\]/ { :l /^subscription[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" ~/.azure/clouds.config
-        if ($null -ne $currentSub) {
-            $currentAccount = (Get-Content ~/.azure/azureProfile.json | ConvertFrom-Json).subscriptions | Where-Object { $_.id -eq $currentSub }
-            if ($null -ne $currentAccount) {
-                Write-Host " " -NoNewLine
-                Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-                Write-Host " $($currentAccount.name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-            }
+    # if (Test-Path ~/.azure/clouds.config) {
+    #     $currentSub = & sed -nr "/^\[AzureCloud\]/ { :l /^subscription[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" ~/.azure/clouds.config
+    #     if ($null -ne $currentSub) {
+    #         $currentAccount = (Get-Content ~/.azure/azureProfile.json | ConvertFrom-Json).subscriptions | Where-Object { $_.id -eq $currentSub }
+    #         if ($null -ne $currentAccount) {
+    #             Write-Host " " -NoNewLine
+    #             Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+    #             Write-Host " $($currentAccount.name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+    #         }
+    #     }
+    # }
+
+    # Write the current Azure Powershell context if any
+    if ($loadedModules -like "*Az.Account*") {
+        $currentContext = Get-AzContext | Select-Object Name
+        if ($null -ne $currentContext) {
+            Write-Host " " -NoNewLine
+            Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+            Write-Host " $($currentContext.Name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
         }
     }
 
@@ -147,39 +192,40 @@ Set-Content Function:prompt {
         Write-Host (Write-VcsStatus) -NoNewLine
     }
 
-     # Write the current directory, with home folder normalized to ~
-     $currentPath = (get-location).Path.replace($home, "~")
-     $idx = $currentPath.IndexOf("::")
-     if ($idx -gt -1) { $currentPath = $currentPath.Substring($idx + 2) }
+    # Write the current directory, with home folder normalized to ~
+    $currentPath = (get-location).Path.replace($home, "~")
+    $idx = $currentPath.IndexOf("::")
+    if ($idx -gt -1) { $currentPath = $currentPath.Substring($idx + 2) }
  
-     Write-Host " " -NoNewLine
-     Write-Host "" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-     Write-Host " $currentPath " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+    Write-Host " " -NoNewLine
+    Write-Host "" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+    Write-Host " $currentPath " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
 
-     Write-Host ""
+    Write-Host ""
 
-     $isAdmin = $false
-     $isDesktop = ($PSVersionTable.PSEdition -eq "Desktop")
+    $isAdmin = $false
+    $isDesktop = ($PSVersionTable.PSEdition -eq "Desktop")
  
-     if ($isDesktop -or $IsWindows) {
-         $windowsIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-         $windowsPrincipal = new-object 'System.Security.Principal.WindowsPrincipal' $windowsIdentity
-         $isAdmin = $windowsPrincipal.IsInRole("Administrators") -eq 1
-     } else {
-         $isAdmin = ((& id -u) -eq 0)
-     }
+    if ($isDesktop -or $IsWindows) {
+        $windowsIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $windowsPrincipal = new-object 'System.Security.Principal.WindowsPrincipal' $windowsIdentity
+        $isAdmin = $windowsPrincipal.IsInRole("Administrators") -eq 1
+    }
+    else {
+        $isAdmin = ((& id -u) -eq 0)
+    }
  
-     if ($isAdmin) { $color = "Red"; }
-     else { $color = "Green"; }
+    if ($isAdmin) { $color = "Red"; }
+    else { $color = "Green"; }
  
-     # Write PS> for desktop PowerShell, pwsh> for PowerShell Core
-     if ($isDesktop) {
-         Write-Host "PS>" -NoNewLine -ForegroundColor $color
-     }
-     else {
-         Write-Host "pwsh>" -NoNewLine -ForegroundColor $color
-     }
+    # Write PS> for desktop PowerShell, pwsh> for PowerShell Core
+    if ($isDesktop) {
+        Write-Host "PS>" -NoNewLine -ForegroundColor $color
+    }
+    else {
+        Write-Host "pwsh>" -NoNewLine -ForegroundColor $color
+    }
  
-     # Always have to return something or else we get the default prompt
-     return " "
+    # Always have to return something or else we get the default prompt
+    return " "
 }

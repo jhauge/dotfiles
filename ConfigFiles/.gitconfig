@@ -1,7 +1,15 @@
 [fetch]
-	prune = true
+    prune = true
+
 [user]
+	email = jesper@iqit.dk
 	name = Jesper Hauge
-	email = jes@addition.dk
+
+[core]
+	editor = code --wait --new-window
+
 [credential]
 	helper = manager
+
+[winUpdater]
+	recentlySeenVersion = 2.21.0.windows.1
