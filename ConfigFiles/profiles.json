@@ -6,7 +6,7 @@
   "profiles": [
     {
       "colorScheme": "VSCode",
-      "cursorColor": "#000000",
+      "cursorColor": "#FFFFFF",
       "fontFace": "Fira Code Retina",
       "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
       "hidden": false,
@@ -76,7 +76,7 @@
       "background": "#0e0a2a",
       "black": "#000000",
       "blue": "#579BD5",
-      "brightBlack": "#302847",
+      "brightBlack": "#3c4ba1",
       "brightBlue": "#9BDBFE",
       "brightCyan": "#2BC4E2",
       "brightGreen": "#1AD69C",
