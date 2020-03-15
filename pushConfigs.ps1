@@ -12,4 +12,5 @@ Copy-Item  .\ConfigFiles\settings.json $vscodeSettingsPath;
 # Git config
 Copy-Item  .\ConfigFiles\.gitconfig $gitconfigPath;
 
-
+# Helper module
+Copy-Item .\MyHelpers\ ~\ -Recurse -Force

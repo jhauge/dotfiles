@@ -1,6 +1,11 @@
 # Get my current external ip
 $Global:myIp = Invoke-RestMethod http://ipinfo.io/json | Select-Object -exp ip
 
+# My helpers
+Push-Location ~\MyHelpers
+Import-Module .\MyHelpers.psd1
+Pop-Location
+
 # Z directory browsing
 Import-Module z
 
@@ -129,3 +134,4 @@ Set-Content Function:prompt {
     # Always have to return something or else we get the default prompt
     return " "
 }
+
