@@ -82,13 +82,10 @@ Set-Content Function:prompt {
     # }
 
     # Write the current Azure Powershell context if any
-    if ($loadedModules -like "*Az.Account*") {
-        $currentContext = Get-AzContext | Select-Object Name
-        if ($null -ne $currentContext) {
-            Write-Host " " -NoNewLine
-            Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-            Write-Host " $($currentContext.Name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-        }
+    if (($loadedModules -like "*Az.Account*") -and ($null -ne $currentAzContext)) {
+        Write-Host " " -NoNewLine
+        Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+        Write-Host " $($currentAzContext.Name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
     }
 
     # Write the current Git information

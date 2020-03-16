@@ -46,5 +46,17 @@ function Backup-AzureDB {
     Write-Host "Backup completed in" $watch.Elapsed.ToString()
 }
 
+<#
+    .Synopsis
+    Gets name of current AzContext and creates variable that will show on prompt
+
+    .Exampe
+    Show-AzContext
+#>
+function Show-AzContext {
+    $global:currentAzContext = Get-AzContext | Select-Object Name
+    Write-Output $currentAzContext
+}
+
 Export-ModuleMember -Function *
 
