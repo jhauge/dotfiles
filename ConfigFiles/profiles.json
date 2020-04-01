@@ -94,5 +94,37 @@
       "yellow": "#D7BA7D"
     }
   ],
-  "keybindings": []
+  "keybindings": [
+    {
+      "keys": [
+        "ctrl+shift+d"
+      ],
+      "command": {
+        "action": "splitPane",
+        "split": "auto"
+      }
+    },
+    {
+      "keys": [
+        "ctrl+pagedown"
+      ],
+      "command": {
+        "action": "moveFocusRight"
+      }
+    },
+    {
+      "keys": [
+        "ctrl+pageup"
+      ],
+      "command": {
+        "action": "moveFocusLeft"
+      }
+    },
+    {
+      "keys": [
+        "ctrl+t"
+      ],
+      "command": "newTab"
+    }
+  ]
 }
