@@ -8,6 +8,6 @@
 & code --install-extension ms-vscode.powershell
 & code --install-extension editorconfig.editorconfig
 & code --install-extension ms-vscode.azure-account
-& code --install-extension lonefy.vscode-js-css-html-formatter
 & code --install-extension dotjoshjohnson.xml
 & code --install-extension pascalreitermann93.vscode-yaml-sort
+& code --install-extension vscode-language-babel
