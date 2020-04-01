@@ -44,7 +44,9 @@ $GitPromptSettings.BeforeStatus.ForegroundColor = [ConsoleColor]::DarkBlue
 $GitPromptSettings.BeforeStatus.Text = " "
 $GitPromptSettings.AfterStatus.Text = " "
 
-$env:path += ";C:\Program Files\Microsoft SQL Server\130\DAC\bin;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Users\Jesper\AppData\Local\gmaster\bin\;C:\Program Files\Git\usr\bin\;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\;C:\Users\jespe\AppData\Local\gmaster\bin\"
+#"C:\Program Files\Microsoft SQL Server\140\DAC\bin\SqlPackage.exe"
+
+$env:path += ";C:\Program Files\Microsoft SQL Server\140\DAC\bin;C:\Program Files\Git\usr\bin\;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\;C:\Users\jespe\AppData\Local\gmaster\bin\"
 
 $loadedModules = Get-Module | Select-Object Name
 

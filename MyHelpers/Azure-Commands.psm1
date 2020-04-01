@@ -18,32 +18,38 @@
     Path to directory to put bacpak file in
 #>
 function Backup-AzureDB {
-    param($databaseName = '', $serverName = '', $userName = '', $password = '', $backupDirectory = '')
-    # Location of Microsoft.SqlServer.Dac.dll
-    $DacAssembly = "C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Extensions\Application\Microsoft.SqlServer.Dac.dll"
+    [CmdletBinding(DefaultParameterSetName = 'ConnString')]
+    param(
+        [Parameter(Position = 0)]
+        $backupDirectory = '',
 
-    $connectionString = "server=$serverName;database=$databaseName;user id=$userName;password=$password"
+        [Parameter(ParameterSetName = 'ConnVals')]
+        $databaseName = '', 
+        [Parameter(ParameterSetName = 'ConnVals')]
+        $serverName = '', 
+        [Parameter(ParameterSetName = 'ConnVals')]
+        $userName = '', 
+        [Parameter(ParameterSetName = 'ConnVals')]
+        $password = '', 
 
-    # Load DAC assembly
-    Write-Host "Loading Dac Assembly: $DacAssembly"
-    Add-Type -Path $DacAssembly
-    Write-Host "Dac Assembly loaded."
+        [Parameter(ParameterSetName = 'ConnString')]
+        $dbConnStr = ''
+    )
 
-    # Initialize Dac
-    $now = $(Get-Date).ToString("HH:mm:ss")
-    $services = new-object Microsoft.SqlServer.Dac.DacServices $connectionString
-    if ($null -eq $services) {
-        exit
+    if ($PSCmdlet.ParameterSetName -eq 'ConnVals') {
+        $dbConnStr = "server=$serverName;database=$databaseName;user id=$userName;password=$password"
+    }
+
+    if ($PSCmdlet.ParameterSetName -eq 'ConnString') {
+        $dbConnStr -match 'Initial Catalog=(.*);Persist'
+        $databaseName = $matches[1]
     }
 
     $dateTime = $(Get-Date).ToString("yyyy-MM-dd-HH.mm.ss")
+    $backupFile = "$backupDirectory\$databaseName-$dateTime.bacpac"
 
-    Write-Host "Starting backup of $databaseName at $now"
-    $watch = New-Object System.Diagnostics.StopWatch
-    $watch.Start()
-    $services.ExportBacpac("$backupDirectory$databaseName-$dateTime.bacpac", $databaseName)
-    $watch.Stop()
-    Write-Host "Backup completed in" $watch.Elapsed.ToString()
+    Write-Host "Backing up database $databaseName" -ForegroundColor Green
+    & sqlpackage.exe /Action:Export /SourceConnectionString:"$dbConnStr" /TargetFile:"$backupFile"
 }
 
 <#
