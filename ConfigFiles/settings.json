@@ -7,11 +7,10 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.wordWrap": "on",
-    "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
     "window.zoomLevel": 1,
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
+    "workbench.colorTheme": "Winter is Coming (Light - No Italics)",
     "todohighlight.exclude": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map,**/umbraco/**,**/umbraco_client/**}",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -21,7 +20,7 @@
     },
     "files.insertFinalNewline": false,
     "[csharp]": {
-        "editor.defaultFormatter": "ms-vscode.csharp"
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
     "[html]": {
         "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
