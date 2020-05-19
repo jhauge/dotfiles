@@ -46,7 +46,7 @@ $GitPromptSettings.AfterStatus.Text = " "
 
 #"C:\Program Files\Microsoft SQL Server\140\DAC\bin\SqlPackage.exe"
 
-$env:path += ";C:\Program Files\Microsoft SQL Server\140\DAC\bin;C:\Program Files\Git\usr\bin\;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\;C:\Users\jespe\AppData\Local\gmaster\bin\"
+$env:path += ";C:\Program Files\Microsoft SQL Server\140\DAC\bin;C:\Program Files\Git\usr\bin\;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\;~\AppData\Local\gmaster\bin\"
 
 $loadedModules = Get-Module | Select-Object Name
 
@@ -69,25 +69,11 @@ Set-Content Function:prompt {
         Write-Host "😊 " -NoNewLine
     }
 
-    # Write the current public cloud Azure CLI subscription
-    # NOTE: You will need sed from somewhere (for example, from Git for Windows)
-    # if (Test-Path ~/.azure/clouds.config) {
-    #     $currentSub = & sed -nr "/^\[AzureCloud\]/ { :l /^subscription[ ]*=/ { s/.*=[ ]*//; p; q;}; n; b l;}" ~/.azure/clouds.config
-    #     if ($null -ne $currentSub) {
-    #         $currentAccount = (Get-Content ~/.azure/azureProfile.json | ConvertFrom-Json).subscriptions | Where-Object { $_.id -eq $currentSub }
-    #         if ($null -ne $currentAccount) {
-    #             Write-Host " " -NoNewLine
-    #             Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-    #             Write-Host " $($currentAccount.name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-    #         }
-    #     }
-    # }
-
     # Write the current Azure Powershell context if any
-    if (($loadedModules -like "*Az.Account*") -and ($null -ne $currentAzContext)) {
+    if ((Test-Path "~/.Azure/AzureRmContext.json") -and ($loadedModules -like "*Az.Account*")) {
         Write-Host " " -NoNewLine
         Write-Host " ∞" -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
-        Write-Host " $($currentAzContext.Name) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
+        Write-Host " $((Get-Content "~/.Azure/AzureRmContext.json" | ConvertFrom-Json).DefaultContextKey) " -NoNewLine -BackgroundColor DarkGray -ForegroundColor White
     }
 
     # Write the current Git information

@@ -11,5 +11,6 @@
 [credential]
 	helper = manager
 
+	useHttpPath = true
 [winUpdater]
 	recentlySeenVersion = 2.21.0.windows.1

@@ -22,9 +22,6 @@
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp"
     },
-    "[html]": {
-        "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
-    },
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line"

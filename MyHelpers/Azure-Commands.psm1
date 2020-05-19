@@ -52,17 +52,5 @@ function Backup-AzureDB {
     & sqlpackage.exe /Action:Export /SourceConnectionString:"$dbConnStr" /TargetFile:"$backupFile"
 }
 
-<#
-    .Synopsis
-    Gets name of current AzContext and creates variable that will show on prompt
-
-    .Exampe
-    Show-AzContext
-#>
-function Show-AzContext {
-    $global:currentAzContext = Get-AzContext | Select-Object Name
-    Write-Output $currentAzContext
-}
-
 Export-ModuleMember -Function *
 
