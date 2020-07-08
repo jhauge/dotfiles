@@ -11,3 +11,6 @@ Copy-Item $gitconfigPath .\ConfigFiles\;
 
 # pwsh.exe profile
 Copy-Item $pwshProfilePath .\ConfigFiles\;
+
+# oh-my-posh profile
+Copy-Item $ohmyposhProfilePath .\ConfigFiles\;

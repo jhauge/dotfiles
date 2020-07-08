@@ -3,6 +3,9 @@
 # Powershell config
 Copy-Item .\ConfigFiles\Microsoft.PowerShell_profile.ps1 $pwshProfilePath -Force;
 
+# oh-my-posh config
+Copy-Item .\ConfigFiles\jhauge.psm1 $ohmyposhProfilePath -Force
+
 # Windows terminal
 Copy-Item .\ConfigFiles\profiles.json $wintermSettingsPath;
 
