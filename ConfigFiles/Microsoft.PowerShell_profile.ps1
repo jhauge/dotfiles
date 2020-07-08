@@ -1,6 +1,3 @@
-# Get my current external ip
-$Global:myIp = Invoke-RestMethod http://ipinfo.io/json | Select-Object -exp ip
-
 # My helpers
 Push-Location ~\MyHelpers
 Import-Module .\MyHelpers.psd1

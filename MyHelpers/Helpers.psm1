@@ -20,4 +20,20 @@ function Get-Guid {
 }
 Set-Alias guid global:Get-Guid
 
+<#
+    .Synopsis
+    Get external IP-address
+#>
+function Get-MyIpAddress {
+    param (
+        [switch]$Renew
+    )
+    if (($myIp -eq $null) -or ($renew)) {
+        Write-Host "Getting ip address"
+        $Global:myIp = Invoke-RestMethod http://ipinfo.io/json | Select-Object -exp ip
+    }
+    Write-Host $myIp
+}
+Set-Alias myip global:Get-MyIpAddress
+
 Export-ModuleMember -Function * -Alias *

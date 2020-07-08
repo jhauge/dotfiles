@@ -5,4 +5,5 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 Install-Module Az
 Install-Module MSTerminalSettings
 Install-Module posh-git
+Install-Module oh-my-posh
 Install-Module z
