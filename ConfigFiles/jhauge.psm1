@@ -23,19 +23,19 @@ function Write-Theme {
         $prompt += Write-Prompt -Object "$($sl.PromptSymbols.ElevatedSymbol) " -ForegroundColor $sl.Colors.AdminIconForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
     }
 
+    # Write the current Azure Powershell context if any
+    if ((Test-Path "~/.Azure/AzureRmContext.json") -and ($(Get-Module | Select-Object Name) -like "*Az.Account*")) {
+        $contextName = $((Get-Content "~/.Azure/AzureRmContext.json" | ConvertFrom-Json).DefaultContextKey)
+        $prompt += Write-Prompt -Object "$($sl.PromptSymbols.CloudEnabledSymbol)$contextName :: " `
+            -ForegroundColor $sl.Colors.PromptForegroundColor `
+            -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
+    }
+
     $user = $sl.CurrentUser
     $computer = $sl.CurrentHostname
     $path = Get-FullPath -dir $pwd
     if (Test-NotDefaultUser($user)) {
         $prompt += Write-Prompt -Object "$user@$computer " -ForegroundColor $sl.Colors.SessionInfoForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
-    }
-
-    # Write the current Azure Powershell context if any
-    if ((Test-Path "~/.Azure/AzureRmContext.json") -and ($(Get-Module | Select-Object Name) -like "*Az.Account*")) {
-        $contextName = $((Get-Content "~/.Azure/AzureRmContext.json" | ConvertFrom-Json).DefaultContextKey)
-        $prompt += Write-Prompt -Object "$($sl.PromptSymbols.CloudEnabledSymbol)$contextName " `
-            -ForegroundColor $sl.Colors.PromptForegroundColor `
-            -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
     }
 
     if (Test-VirtualEnv) {
