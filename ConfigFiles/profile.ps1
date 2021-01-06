@@ -10,3 +10,6 @@ Import-Module z
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-Theme jhauge
+
+# Aliases
+Set-Alias -Name selcontext -Value Select-AzContext

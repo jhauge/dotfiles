@@ -1,7 +1,7 @@
 . .\paths.ps1
 
 # Powershell config
-Copy-Item .\ConfigFiles\Microsoft.PowerShell_profile.ps1 $pwshProfilePath -Force;
+Copy-Item .\ConfigFiles\profile.ps1 $pwshProfilePath -Force;
 
 # oh-my-posh config
 Copy-Item .\ConfigFiles\jhauge.psm1 $ohmyposhProfilePath -Force
