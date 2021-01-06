@@ -52,5 +52,45 @@ function Backup-AzureDB {
     & sqlpackage.exe /Action:Export /SourceConnectionString:"$dbConnStr" /TargetFile:"$backupFile"
 }
 
+<# 
+    .Synopsis
+    Adds an allow rule for provided IP-address to Azure SQL Server
+
+    .Example
+    Add-DevIpAddress -ipAddress 111.222.333.444 -ruleNameAppendix cphoffice@addition
+
+    .Parameter ipAddress
+    The ip address to allow through firewall to sql server
+
+    .Parameter ruleNameAppendix
+    Added to rule name after "allow-" use a name that descripes the person(s) you're allowing like cphoffice@addition for all at Addition office or jes@addition for single person ip.
+
+#>
+function Add-AzSqlServerIpAllowRule {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ipAddress,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ruleNameAppendix,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $sqlServerName,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $rgName
+    )
+
+    Write-Host "Adding rule named allow-$ruleNameAppendix for ip $ipAddress to $sqlServerName"
+    New-AzSqlServerFirewallRule -FirewallRuleName "allow-$ruleNameAppendix" `
+        -StartIpAddress $ipAddress `
+        -EndIpAddress $ipAddress `
+        -ResourceGroupName $rgName `
+        -ServerName $sqlServerName
+
+    Write-Host "Rule allow-$ruleNameAppendix added to $sqlServerName" -ForegroundColor Green
+}
+
 Export-ModuleMember -Function *
 
