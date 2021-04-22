@@ -5,8 +5,8 @@
     "copyFormatting": true,
     "profiles": {
         "defaults": {
-            "colorScheme": "Breeze",
-            "fontFace": "Cascadia Code PL",
+            "colorScheme": "BluLoco",
+            "fontFace": "CaskaydiaCove NF",
             "fontSize": 12,
             "acrylicOpacity": 0.95,
             "useAcrylic": true

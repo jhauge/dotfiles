@@ -3,4 +3,4 @@ $wintermSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8we
 $vscodeSettingsPath = "$env:APPDATA\Code\User\settings.json";
 $gitconfigPath = "~\.gitconfig"
 $pwshProfilePath = $PROFILE.CurrentUserAllHosts
-$ohmyposhProfilePath = "$docsfolder\PowerShell\PoshThemes\jhauge.psm1"
+$ohmyposhProfilePath = "~\.ohmyposh.jhauge.json"
