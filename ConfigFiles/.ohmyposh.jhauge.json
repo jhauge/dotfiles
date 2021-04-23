@@ -67,9 +67,6 @@
       "type": "prompt"
     },
     {
-      "type": "newline"
-    },
-    {
       "alignment": "left",
       "segments": [
         {

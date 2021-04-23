@@ -27,5 +27,6 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
     "terminal.external.windowsExec": "pwsh.exe",
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.fontFamily": "CaskaydiaCove NF"
 }
