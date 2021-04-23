@@ -11,7 +11,7 @@ Import-Module z
 
 # posh-git
 Import-Module oh-my-posh
-Set-PoshPrompt C:\Users\jespe\.ohmyposh.jhauge.json
+Set-PoshPrompt ~\.ohmyposh.jhauge.json
 
 # Aliases
 Set-Alias -Name selcontext -Value Select-AzContext
