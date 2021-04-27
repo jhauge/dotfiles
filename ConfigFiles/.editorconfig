@@ -5,5 +5,5 @@ indent_style = space
 indent_size = 4
 insert_final_newline = true
 
-[*.{config,yml}]
+[*.{config,yml,json}]
 indent_size = 2
