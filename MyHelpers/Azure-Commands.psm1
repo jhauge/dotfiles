@@ -17,6 +17,7 @@
     .Parameter backupDirectory
     Path to directory to put bacpak file in
 #>
+
 function Backup-AzureDB {
     [CmdletBinding(DefaultParameterSetName = 'ConnString')]
     param(
