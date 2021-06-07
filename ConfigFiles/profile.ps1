@@ -15,3 +15,4 @@ Set-PoshPrompt ~\.ohmyposh.jhauge.json
 
 # Aliases
 Set-Alias -Name selcontext -Value Select-AzContext
+Set-Alias -Name gdns -Value Resolve-DnsName
