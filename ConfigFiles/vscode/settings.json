@@ -10,7 +10,7 @@
     "files.autoSaveDelay": 1000,
     "window.zoomLevel": 1,
     "workbench.colorCustomizations": {},
-    "workbench.colorTheme": "Winter is Coming (Light - No Italics)",
+    "workbench.colorTheme": "GitHub Plus",
     "todohighlight.exclude": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map,**/umbraco/**,**/umbraco_client/**}",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -28,5 +28,8 @@
     "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
     "terminal.external.windowsExec": "pwsh.exe",
     "diffEditor.ignoreTrimWhitespace": false,
-    "terminal.integrated.fontFamily": "CaskaydiaCove NF"
+    "terminal.integrated.fontFamily": "CaskaydiaCove NF",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
 }
