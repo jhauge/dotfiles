@@ -53,6 +53,88 @@ function Backup-AzureDB {
     & sqlpackage.exe /Action:Export /SourceConnectionString:"$dbConnStr" /TargetFile:"$backupFile"
 }
 
+<#
+    .Synopsis
+    Imports a bacpac file to a new db, use the parameter azSku to specify db compute setup in azure if necessary
+
+    .Example
+    Add-DevIpAddress -ipAddress 111.222.333.444 -ruleNameAppendix cphoffice@addition
+
+    .Parameter sourceFile
+    Path to bacpac file to be imported
+
+    .Parameter dbName
+    Database name
+
+    .Parameter serverName
+    Server name (must be a network accessible name)
+
+    .Parameter userName
+    Server username to use for creating the db
+
+    .Parameter password
+    Server password
+
+    .Parameter azSku
+    Azure DB SKU possible values: Basic|S0|S1|S2|S4|S3|P1|P2|P4|P6
+
+    .Parameter azMaxSize
+    Max size in GB of DB in Azure 
+#>
+function Import-AzureDb {
+    param (
+        # Source file   
+        [Parameter(Mandatory)]
+        [string]
+        $sourceFile,
+
+        # Database name
+        [Parameter(Mandatory)]
+        [string]
+        $dbName,
+
+        # Server name
+        [Parameter(Mandatory)]
+        [string]
+        $serverName,
+
+        # Server user
+        [Parameter(Mandatory)]
+        [string]
+        $userName,
+
+        # server password
+        [Parameter(Mandatory)]
+        [string]
+        $password,
+
+        # SKU Basic|Sx|Px
+        [Parameter()]
+        [ValidateSet('Basic', 'S0', 'S1', 'S2', 'S3', 'S4', 'P1', 'P2', 'P4', 'P6')]
+        [string]
+        $azSKU = 'None',
+
+        # Max size of database in Azure
+        [Parameter()]
+        [Int16]
+        $azMaxSize = 2
+    )
+
+    $skuType = $azSKU.Substring(0, 1)
+    switch ($skuType) {
+        'B' { $edition = 'Basic' }
+        'S' { $edition = 'Standard' }
+        'P' { $edition = 'Premium' }
+    }
+
+    # $props = "/p:DatabaseEdition=$edition /p:DatabaseServiceObjective=$sku /p:DatabaseMaximumSize=$maxSize"
+    # $connStr = "server=$serverName;database=$databaseName;user id=$userName;password=$password"
+
+    Write-Host "Running import job" -ForegroundColor Green
+    & sqlpackage.exe /a:Import /sf:"$sourceFile" /tdn:"$dbName" /tsn:"$serverName" /tu:"$userName" /tp:"$password" /p:DatabaseEdition="$edition" /p:DatabaseServiceObjective="$azSKU" /p:DatabaseMaximumSize="$azMaxSize"
+    
+}
+
 <# 
     .Synopsis
     Adds an allow rule for provided IP-address to Azure SQL Server
@@ -65,7 +147,6 @@ function Backup-AzureDB {
 
     .Parameter ruleNameAppendix
     Added to rule name after "allow-" use a name that descripes the person(s) you're allowing like cphoffice@addition for all at Addition office or jes@addition for single person ip.
-
 #>
 function Add-AzSqlServerIpAllowRule {
     param(
