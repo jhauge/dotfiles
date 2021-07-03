@@ -22,7 +22,10 @@
           "foreground": "#193549",
           "powerline_symbol": "",
           "style": "powerline",
-          "type": "git"
+          "type": "git",
+          "properties": {
+            "display_status": true
+          }
         }
       ],
       "type": "prompt"
@@ -37,9 +40,10 @@
           "foreground": "#333333",
           "background": "#91ddff",
           "properties": {
+            "display_account": false,
             "display_id": false,
             "display_name": true,
-            "info_separator": " @ ",
+            "info_separator": "@",
             "prefix": " \ufd03 "
           }
         },
@@ -102,5 +106,5 @@
       "type": "prompt"
     }
   ],
-  "final_space": true
+  "final_space": false
 }
