@@ -8,7 +8,7 @@
     "editor.formatOnSave": true,
     "editor.wordWrap": "on",
     "files.autoSaveDelay": 1000,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "workbench.colorCustomizations": {},
     "workbench.colorTheme": "GitHub Plus",
     "todohighlight.exclude": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map,**/umbraco/**,**/umbraco_client/**}",

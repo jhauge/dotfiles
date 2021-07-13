@@ -12,7 +12,12 @@
             "folder_icon": "",
             "folder_separator_icon": "  ",
             "home_icon": "",
-            "style": "agnoster"
+            "style": "agnoster_full",
+            "mapped_locations_enabled": true,
+            "mapped_locations": {
+              "C:\\temp": "\uE799",
+              "c:\\Users\\jhu\\Projects": "\uE5FB"
+            }
           },
           "style": "powerline",
           "type": "path"
