@@ -63,7 +63,7 @@ function Backup-AzureDB {
     .Parameter sourceFile
     Path to bacpac file to be imported
 
-    .Parameter dbName
+    .Parameter databaseName
     Database name
 
     .Parameter serverName
@@ -91,7 +91,7 @@ function Import-AzureDb {
         # Database name
         [Parameter(Mandatory)]
         [string]
-        $dbName,
+        $databaseName,
 
         # Server name
         [Parameter(Mandatory)]
@@ -131,7 +131,7 @@ function Import-AzureDb {
     # $connStr = "server=$serverName;database=$databaseName;user id=$userName;password=$password"
 
     Write-Host "Running import job" -ForegroundColor Green
-    & sqlpackage.exe /a:Import /sf:"$sourceFile" /tdn:"$dbName" /tsn:"$serverName" /tu:"$userName" /tp:"$password" /p:DatabaseEdition="$edition" /p:DatabaseServiceObjective="$azSKU" /p:DatabaseMaximumSize="$azMaxSize"
+    & sqlpackage.exe /a:Import /sf:"$sourceFile" /tdn:"$databaseName" /tsn:"$serverName" /tu:"$userName" /tp:"$password" /p:DatabaseEdition="$edition" /p:DatabaseServiceObjective="$azSKU" /p:DatabaseMaximumSize="$azMaxSize"
     
 }
 
