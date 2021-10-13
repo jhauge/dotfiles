@@ -1,9 +1,10 @@
 root = true
 
+[*.json]
+indent_style = space
+indent_size = 2
+
 [*]
 indent_style = space
 indent_size = 4
 insert_final_newline = true
-
-[*.{config,yml,json}]
-indent_size = 2

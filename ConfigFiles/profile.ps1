@@ -15,6 +15,7 @@ Set-PoshPrompt ~\.ohmyposh.jhauge.json
 Import-Module PSReadLine
 
 # Aliases
+Set-Alias -Name selcontext -Value Select-AzContext
 Set-Alias -Name gdns -Value Resolve-DnsName
 
 # Az account module support

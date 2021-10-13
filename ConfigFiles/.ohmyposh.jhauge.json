@@ -1,110 +1,107 @@
 {
-  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "blocks": [
-    {
-      "alignment": "left",
-      "segments": [
-        {
-          "background": "#91ddff",
-          "foreground": "#100e23",
-          "powerline_symbol": "",
-          "properties": {
-            "folder_icon": "",
-            "folder_separator_icon": "  ",
-            "home_icon": "",
-            "style": "agnoster"
-          },
-          "style": "powerline",
-          "type": "path"
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [{
+            "alignment": "left",
+            "segments": [{
+                    "background": "#91ddff",
+                    "foreground": "#100e23",
+                    "powerline_symbol": "",
+                    "properties": {
+                        "folder_icon": "",
+                        "folder_separator_icon": "  ",
+                        "home_icon": "",
+                        "style": "agnoster_full",
+                        "mapped_locations_enabled": true,
+                        "mapped_locations": {
+                            "C:\\temp": "\uE799",
+                            "c:\\Users\\jhu\\Projects": "\uE5FB"
+                        }
+                    },
+                    "style": "powerline",
+                    "type": "path"
+                },
+                {
+                    "background": "#95ffa4",
+                    "foreground": "#193549",
+                    "powerline_symbol": "",
+                    "style": "powerline",
+                    "type": "git"
+                }
+            ],
+            "type": "prompt"
         },
         {
-          "background": "#95ffa4",
-          "foreground": "#193549",
-          "powerline_symbol": "",
-          "style": "powerline",
-          "type": "git",
-          "properties": {
-            "display_status": true
-          }
+            "alignment": "right",
+            "segments": [{
+                    "type": "az",
+                    "style": "powerline",
+                    "powerline_symbol": "",
+                    "foreground": "#333333",
+                    "background": "#91ddff",
+                    "properties": {
+                        "display_id": false,
+                        "display_name": true,
+                        "info_separator": "@",
+                        "prefix": " \ufd03 "
+                    }
+                },
+                {
+                    "type": "node",
+                    "style": "powerline",
+                    "powerline_symbol": "",
+                    "foreground": "#ffffff",
+                    "background": "#6CA35E",
+                    "properties": {
+                        "prefix": " \uE718 "
+                    }
+                },
+                {
+                    "type": "dotnet",
+                    "style": "powerline",
+                    "powerline_symbol": "",
+                    "foreground": "#000000",
+                    "background": "#0084ff",
+                    "properties": {
+                        "prefix": " \uE77F "
+                    }
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "segments": [{
+                    "type": "exit",
+                    "style": "plain",
+                    "foreground": "#22bb00",
+                    "properties": {
+                        "display_exit_code": false,
+                        "always_enabled": true,
+                        "error_color": "#ff2828",
+                        "success_icon": "\uF004",
+                        "error_icon": "\uF7D3"
+                    }
+                },
+                {
+                    "type": "root",
+                    "style": "plain",
+                    "powerline_symbol": "\uE0B0",
+                    "foreground": "#ec279a",
+                    "properties": {
+                        "root_icon": "\uF0E7"
+                    }
+                },
+                {
+                    "type": "text",
+                    "style": "plain",
+                    "foreground": "#2828ff",
+                    "properties": {
+                        "text": "\uF105"
+                    }
+                }
+            ],
+            "type": "prompt"
         }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "right",
-      "segments": [
-        {
-          "type": "az",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#333333",
-          "background": "#91ddff",
-          "properties": {
-            "display_account": false,
-            "display_id": false,
-            "display_name": true,
-            "info_separator": "@",
-            "prefix": " \ufd03 "
-          }
-        },
-        {
-          "type": "node",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#ffffff",
-          "background": "#6CA35E",
-          "properties": {
-            "prefix": " \uE718 "
-          }
-        },
-        {
-          "type": "dotnet",
-          "style": "powerline",
-          "powerline_symbol": "",
-          "foreground": "#000000",
-          "background": "#0084ff",
-          "properties": {
-            "prefix": " \uE77F "
-          }
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "segments": [
-        {
-          "type": "exit",
-          "style": "plain",
-          "foreground": "#22bb00",
-          "properties": {
-            "display_exit_code": false,
-            "always_enabled": true,
-            "error_color": "#ff2828",
-            "success_icon": "\uF004",
-            "error_icon": "\uF7D3"
-          }
-        },
-        {
-          "type": "root",
-          "style": "plain",
-          "powerline_symbol": "\uE0B0",
-          "foreground": "#ec279a",
-          "properties": {
-            "root_icon": "\uF0E7"
-          }
-        },
-        {
-          "type": "text",
-          "style": "plain",
-          "foreground": "#2828ff",
-          "properties": {
-            "text": "\uF105"
-          }
-        }
-      ],
-      "type": "prompt"
-    }
-  ],
-  "final_space": false
+    ],
+    "final_space": true
 }
