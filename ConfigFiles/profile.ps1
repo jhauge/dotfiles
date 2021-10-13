@@ -12,6 +12,7 @@ Import-Module z
 # posh-git
 Import-Module oh-my-posh
 Set-PoshPrompt ~\.ohmyposh.jhauge.json
+Import-Module PSReadLine
 
 # Aliases
 Set-Alias -Name gdns -Value Resolve-DnsName

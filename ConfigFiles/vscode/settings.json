@@ -29,5 +29,12 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "terminal.integrated.fontFamily": "CaskaydiaCove NF",
   "window.zoomLevel": 1,
-  "azureFunctions.showProjectWarning": false
+  "azureFunctions.showProjectWarning": false,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": false
+  }
 }

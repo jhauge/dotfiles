@@ -1,58 +1,72 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "copyFormatting": "all",
-    "copyOnSelect": false,
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-    "experimental.rendering.forceFullRepaint": false,
-    "keybindings": [
+    "actions": 
+    [
         {
-            "command": {
+            "command": 
+            {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
         {
-            "command": {
+            "command": 
+            {
+                "action": "commandPalette"
+            },
+            "keys": "ctrl+shift+p"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+t"
+        },
+        {
+            "command": 
+            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "newTab",
-            "keys": [
-                "ctrl+t"
-            ]
-        },
-        {
-            "command": "commandPalette",
-            "keys": "ctrl+shift+p"
         }
     ],
-    "profiles": {
-        "defaults": {
+    "copyFormatting": "all",
+    "copyOnSelect": false,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "experimental.rendering.forceFullRepaint": false,
+    "profiles": 
+    {
+        "defaults": 
+        {
             "acrylicOpacity": 0.94999999999999996,
             "colorScheme": "BluLoco",
-            "fontFace": "CaskaydiaCove NF",
-            "fontSize": 12,
+            "font": 
+            {
+                "face": "CaskaydiaCove NF",
+                "size": 12
+            },
             "useAcrylic": false
         },
-        "list": [
+        "list": 
+        [
             {
+                "colorScheme": "One Half Dark",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
                 "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore",
-                "colorScheme": "BluLoco"
+                "source": "Windows.Terminal.PowershellCore"
             },
             {
                 "colorScheme": "Campbell Powershell",
@@ -76,7 +90,7 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "colorScheme": "BluLoco",
+                "colorScheme": "Solarized Dark",
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
@@ -94,7 +108,8 @@
             }
         ]
     },
-    "schemes": [
+    "schemes": 
+    [
         {
             "background": "#FBFBFB",
             "black": "#E7E8E0",
