@@ -12,7 +12,12 @@ Import-Module z
 # posh-git
 Import-Module oh-my-posh
 Set-PoshPrompt ~\.ohmyposh.jhauge.json
+
+# PSReadline
 Import-Module PSReadLine
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler –Key DownArrow -Function HistorySearchForward
 
 # Aliases
 Set-Alias -Name selcontext -Value Select-AzContext
