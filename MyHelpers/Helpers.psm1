@@ -36,4 +36,22 @@ function Get-MyIpAddress {
 }
 Set-Alias myip global:Get-MyIpAddress
 
+<# 
+    .Synopsis
+    Invoke profile scripts
+#>
+function Invoke-Profile {
+    @(
+        $Profile.AllUsersAllHosts,
+        $Profile.AllUsersCurrentHost,
+        $Profile.CurrentUserAllHosts,
+        $Profile.CurrentUserCurrentHost
+    ) | ForEach-Object {
+        if(Test-Path $_){
+            Write-Verbose "Running $_"
+            . $_
+        }
+    }
+}
+
 Export-ModuleMember -Function * -Alias *
